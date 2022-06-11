@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Autorization from '../Modal/Autorization/Autorization'
+import Autorization from '../../ClientAuth/Autorization/Autorization'
 
 function Header() {
   return (
