@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState = {   
     email: null,
     token: null,
-    id: null,
+    userId: null,
+    favotite: [],
 };
 
 const userSlice = createSlice({
@@ -13,16 +14,24 @@ const userSlice = createSlice({
         setUser(state , action) {
             state.email = action.payload.email;
             state.token = action.payload.token;
-            state.id = action.payload.id;
+            state.userId = action.payload.userId;
+            state.favotite = action.payload.favotite;
         },
         removeUSer(state){
             state.email = null;
             state.token = null;
-            state.id = null;
+            state.userId = null;
+            state.favotite = [];
         },
+        addFavoriteCard (state, action){
+            state.favotite.push(action.payload.id); 
+        },
+        removeFavoriteCard(state, action){
+            state.favotite.splice(state.favotite.findIndex((id) => id === action.payload.id) ,1)
+        }
     },
 });
 
-export const {setUser, removeUSer} = userSlice.actions;
+export const {setUser, removeUSer, addFavoriteCard, removeFavoriteCard} = userSlice.actions;
 
 export default userSlice.reducer;
