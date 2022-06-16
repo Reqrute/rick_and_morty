@@ -1,5 +1,4 @@
 import React from "react";
-import CardsModal from "./CardsModal";
 import './Cards.css'
 
 const Card = ({result}) => {
@@ -7,20 +6,62 @@ const Card = ({result}) => {
 
   if (result) {
     display = result.map((x) => {
-      let { id, image, name, status, location, gender , species } = x;
+      let { id, image, name, status, location, gender , species, origin } = x;
 
       return (
          <div
-          style={{ textDecoration: "none" }}
-          //to={`${page}${id}`}
+          style={{ textDecoration: "none", cursor: "pointer" }}
+          to={`${id}`}
           key={id}
           className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4 position-relative text-dark"
+          data-bs-toggle="modal" 
+          data-bs-target={`#CardModal${id}`}
         >
+<div className="modal fade" id= {`CardModal${id}`} tabIndex="-1" aria-labelledby="CardModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content justify-content-center text-center">
+      <div className="modal-header">
+        <h5 className="modal-title" id="CardModalLabel">{name}</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body ">
+        <img className="image img-fluid "  src={image} alt="" />
+
+          <div className="content">
+         {(() => {
+            if (status === "Dead") {
+              return <div style= {{width: "300px"}} className="badge bg-danger fs-5">{status}</div>;
+            } else if (status === "Alive") {
+              return <div style= {{width: "300px"}} className="badge bg-success fs-5">{status}</div>;
+            } else {
+              return <div style= {{width: "300px"}} className="badge bg-secondary fs-5">{status}</div>;
+            }
+          })()}
+            <div className="fs-6 fw-normal">
+              <span className="fw-bold">Gender : </span>
+              {gender}
+            </div>
+            <div className="">
+              <span className="fw-bold">Location: </span>
+              {location?.name}
+            </div>
+            <div className="">
+              <span className="fw-bold">Origin: </span>
+              {origin?.name}
+            </div>
+            <div className="">
+              <span className="fw-bold">Species: </span>
+              {species}
+            </div> 
+          </div> 
+      </div>
+    </div>
+  </div>
+</div>
         
           <div
             className={`cards d-flex flex-column justify-content-center`}
           >
-         
             <img className={`img img-fluid`} src={image} alt="" />
             <div className={`content`}>
               <div className="fs-5 fw-bold mb-4">{name}</div>
@@ -33,7 +74,6 @@ const Card = ({result}) => {
                 <div className="fs-5">{location.name}</div>
               </div>
             </div>
-            <CardsModal id={id}/>
           </div>
  
           {(() => {

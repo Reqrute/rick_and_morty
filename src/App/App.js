@@ -4,10 +4,8 @@ import Episodes from '../Pages/Episode';
 import Location from '../Pages/Location';
 import Navbar from '../Components/Header/Header';
 import Characters from '../Pages/Characters';
-
-//import Autorization from '../ClientAuth/Autorization/Autorization';
-//import Registration from '../ClientAuth/Registration/Registration';
-
+import { Login } from '../Components/Authorization/Login';
+import { SignUp } from '../Components/Authorization/SignUp';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap"
 
@@ -17,6 +15,9 @@ function App() {
     <React.Fragment>
       <div className="App">
         <Navbar />
+        <Login />
+        <SignUp/>
+
       </div>
       <Routes>
         <Route exact path="/" element={<Characters />} />
@@ -27,8 +28,7 @@ function App() {
   );
     // <Routes>
     //   <Route exact path="/" element = {<Characters/>} />
-    //   <Route exact path="/login" element = {<Autorization/>} />
-    //   <Route exact path="/register" element = {<Registration/>} />
+    //   
     // </Routes>
   
 }
