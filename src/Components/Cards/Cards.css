@@ -12,7 +12,23 @@
 }
 
 .badgec {
-  top: 10px;
+  z-index: 3;
   right: 20px;
+  top: 10px;
   font-size: 17px;
 }
+
+.badgef {
+  right: 50px;
+  top: 10px;
+  font-size: 17px;
+}
+
+.imga {
+  height: 10px;
+  width: 10px;
+}
+
+.carda {
+  background: rgba(99, 114, 255, 0.8);
+} 

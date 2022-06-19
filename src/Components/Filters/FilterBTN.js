@@ -1,10 +1,29 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
+import { useSide } from "../../Constants/useSide";
 import { setGender, setStatus, setSpecies, setPageNumber } from "../../store/slices/sideSlice";
 
 const FilterBTN = ({ input, index, name }) => {
 
   const dispatch  = useDispatch();
+  const {status, gender,species} = useSide();
+
+  function handleBool (input, name){
+    switch (name) 
+    {
+      case "gender":
+
+        return  input === gender ;
+
+        case "status":
+          return  input === status;
+
+          case "species":
+            return  input === species;
+
+        default: return false
+    }
+  }
 
   function handleSwitch (name, input , page) {
     switch (name)
@@ -55,11 +74,13 @@ const FilterBTN = ({ input, index, name }) => {
         <input
           className="form-check-input x"
           type="radio"
+          checked={handleBool(input, name)}
+          onChange={handleBool}
           name={name}
           id={`${name}-${index}`}
         />
         <label
-          onClick={(x) => {
+          onClick={() => {
             handleSwitch(name, input , 1)
           }}
           className="btn btn-outline-primary"
