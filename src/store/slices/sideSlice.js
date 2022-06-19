@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {  
-    search: '',
+    search: ' ',
     species: '',
     gender: '',
     status: '',
@@ -33,11 +33,18 @@ const sideSlice = createSlice({
             state.gender = "";
             state.status = "";
             state.pageNumber = 1;
+        },
+        removeAll(state)
+        {
+            state.species = "";
+            state.gender = "";
+            state.status = "";
+            state.search = " ";
+            state.pageNumber = 1;
         }
-        
     },
 });
 
-export const {setSearch, setSpecies, setGender,setStatus,setPageNumber,removeFilters} = sideSlice.actions;
+export const {setSearch, setSpecies, setGender,setStatus,setPageNumber,removeFilters,removeAll} = sideSlice.actions;
 
 export default sideSlice.reducer;
