@@ -30,12 +30,14 @@ import React from 'react';
             id: user.uid,
             token:user.accessToken,
             password: password,
-            favorite : JSON.parse(data.favorite), 
+            favorite : JSON.parse(data.favorite),
+            name : data.name ,
           }));
           console.log(data.favorite);
           sessionStorage.setItem( 'Email' , user.email);
           sessionStorage.setItem( 'id' , user.id);
           sessionStorage.setItem( 'Token' , user.accessToken);
+          sessionStorage.setItem("Name", data.name);
           sessionStorage.setItem( 'Password' , password);
           sessionStorage.setItem( 'Favorite' , JSON.stringify(data.favorite));
           push('/');

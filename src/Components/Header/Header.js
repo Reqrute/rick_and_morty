@@ -9,13 +9,15 @@ import { db } from "../../firebase";
 import "../../App/App.css";
 
 const Header = () => {
-  const {isAuth , email, favorite} = useAuth();
+  const {isAuth , email, favorite, name} = useAuth();
   const dispatch = useDispatch();
+  let user = name || "User";
 
   async function handleSend () {
      await setDoc(doc(db, "emails" , email), {
       email: email,
       favorite:  JSON.stringify(favorite),
+      name : name,
     });
 }
   return (
@@ -64,7 +66,7 @@ const Header = () => {
 
             <li className="nav-item dropdown ">
           <p className="nav-link " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User
+            {user}
           </p>
           <ul className="dropdown-menu dropdown-menu-end">
           { isAuth && (

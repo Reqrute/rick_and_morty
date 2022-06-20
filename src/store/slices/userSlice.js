@@ -4,6 +4,7 @@ const initialState = {
     email: null,
     token: null,
     userId: null,
+    name : null,
     password: null,
     favorite: [],
 };
@@ -18,12 +19,14 @@ const userSlice = createSlice({
             state.userId = action.payload.userId;
             state.password = action.payload.password;
             state.favorite = action.payload.favorite;
+            state.name = action.payload.name;
         },
         removeUSer(state){
             state.email = null;
             state.token = null;
             state.userId = null;
             state.password = null;
+            state.name = null;
             state.favorite = [];
         },
         addFavoriteCard (state, action){

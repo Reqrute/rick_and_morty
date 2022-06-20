@@ -1,49 +1,41 @@
 import { useDispatch } from 'react-redux'
 import { useState } from "react"; 
-import { getAuth, updateEmail, reauthenticateWithCredential , signInWithEmailAndPassword} from "firebase/auth";
 import { setUser } from '../../store/slices/userSlice';
 import { useAuth } from '../../Constants/use-auth';
 import React from 'react';
 
- const ChangeEmail = () => {
+ const ChangeNickname = () => {
   const dispatch = useDispatch();
 
-  const {password,email} = useAuth(); 
-  const [emails, setEmail] = useState('');
+  const {password} = useAuth(); 
+  const [name, setName] = useState('');
   const [pass, setPass] = useState(''); 
   
-    const  handleChangeEmail = (emails) => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const credential = signInWithEmailAndPassword(auth , email, password);
-        reauthenticateWithCredential(user, credential);
-
-        updateEmail(auth.currentUser, emails);
+    const handleChangeNickname = async () => {
         dispatch(setUser({
-            email: emails
+            name: name,
         }))
 
-        sessionStorage.setItem( 'Email' , emails);
-        
+        sessionStorage.setItem( 'Name' , name);
 }
 
   return (  
-<div className="modal fade" id="ChangeEmailModal" tabIndex="-1" aria-labelledby="ChangeEmailModalLabel" aria-hidden="true">
+<div className="modal fade" id="ChangeNicknameModal" tabIndex="-1" aria-labelledby="ChangeNicknameModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="ChangeEmailModalLabel">ChangeEmail</h5>
+        <h5 className="modal-title" id="ChangeNicknameModalLabel">ChangeNickname</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
         <div className="mb-3">
-          <label htmlFor="EmailCE" className="col-form-label">Write new Email:</label>
+          <label htmlFor="NicknameCE" className="col-form-label">Write new Nickname:</label>
           <input 
-          type="email" 
+          type="text" 
           className="form-control" 
-          id="EmailCE"        
-          value={emails} 
-          onChange = {(e) => setEmail(e.target.value)} />
+          id="NicknameCE"        
+          value={name} 
+          onChange = {(e) => setName(e.target.value)} />
           </div>
           <div className="mb-3">
           <label htmlFor="PasswordL" className="col-form-label">Password:</label>
@@ -67,9 +59,9 @@ import React from 'react';
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         {password === pass ? (
-            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => handleChangeEmail(emails)}>ChangeEmail</button>
+            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => handleChangeNickname()}>ChangeNickname</button>
             ) : (
-                <button type="button" className="btn btn-primary"  disabled>ChangeEmail</button>
+                <button type="button" className="btn btn-primary"  disabled>ChangeNickname</button>
             )}
       </div>
     </div>
@@ -77,4 +69,4 @@ import React from 'react';
 </div>
   )
 }
-export {ChangeEmail}
+export {ChangeNickname}

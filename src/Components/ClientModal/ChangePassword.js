@@ -36,7 +36,7 @@ import React from 'react';
       </div>
       <div className="modal-body">
         <div className="mb-3">
-        <label htmlFor="PasswordL1" className="col-form-label">Password:</label>
+        <label htmlFor="PasswordCP1" className="col-form-label">Password:</label>
           <input 
           type = "password" 
           className="form-control" 
@@ -52,7 +52,7 @@ import React from 'react';
           > Password Correct !!!</p>}
           </div>
           <div className="mb-3">
-        <label htmlFor="PasswordL" className="col-form-label">Password:</label>
+        <label htmlFor="PasswordCP2" className="col-form-label">Password:</label>
           <input 
           type = "password" 
           className="form-control" 
@@ -67,7 +67,7 @@ import React from 'react';
           </div>
          
           <div className="mb-3">
-          <label htmlFor="PasswordL" className="col-form-label">Password:</label>
+          <label htmlFor="PasswordCP3" className="col-form-label">Password:</label>
           <input 
           type = "password" 
           className="form-control" 

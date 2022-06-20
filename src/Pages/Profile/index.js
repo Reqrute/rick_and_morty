@@ -5,13 +5,14 @@ import Card from "../../Components/Cards/Card";
 import { useAuth } from '../../Constants/use-auth';
 import { ChangeEmail } from '../../Components/ClientModal/ChangeEmail';
 import { ChangePassword } from '../../Components/ClientModal/ChangePassword';
+import {ChangeNickname} from '../../Components/ClientModal/ChangeNickname'
 import { removeUSer } from '../../store/slices/userSlice';
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from "../../firebase";
 
 
 export default function Profile() {
-    const {favorite,email} = useAuth();
+    const {favorite,email, name} = useAuth();
     const [result , setResult]= useState([]);
     const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ export default function Profile() {
     await setDoc(doc(db, "emails" , email), {
      email: email,
      favorite:  JSON.stringify(favorite),
+     name : name,
    });
 }
 
@@ -40,6 +42,7 @@ export default function Profile() {
     <div className="App">
     <ChangeEmail/>
     <ChangePassword/>
+    <ChangeNickname/>
         <h1 style={{color : "white"}} className="text-center mb-3">Favorite characters</h1>
 
         <div className="container">
@@ -50,6 +53,15 @@ export default function Profile() {
              className="accordion" id="accordionExample">
             <div  style={{ border: "2px solid #0b5ed7"}} className="accordion-item">
             <div className="list-group">
+
+            <button 
+              type="button" 
+              className="list-group-item list-group-item-action text-center"
+              data-bs-toggle="modal" 
+              data-bs-target="#ChangeNicknameModal"
+              >Change name
+              </button>
+
               <button 
               type="button" 
               className="list-group-item list-group-item-action text-center"

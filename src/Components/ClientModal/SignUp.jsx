@@ -9,6 +9,7 @@ import { setUser } from '../../store/slices/userSlice';
     const push = useNavigate();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState(''); 
+    const [name, setName] = useState(''); 
 
     const  handleRegister = (email, password) => {
       const auth = getAuth();
@@ -20,11 +21,13 @@ import { setUser } from '../../store/slices/userSlice';
                 id: user.uid,
                 token:user.accessToken,
                 password: password, 
+                name : name,
               }));
               sessionStorage.setItem( 'Email' , user.email);
               sessionStorage.setItem( 'id' , user.id);
               sessionStorage.setItem( 'Token' , user.accessToken);
               sessionStorage.setItem( 'Password' , password);
+              sessionStorage.setItem( 'Name' , name);
               push('/');
             })
             .catch(console.error)
@@ -40,6 +43,15 @@ import { setUser } from '../../store/slices/userSlice';
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
+      <div className="mb-3">
+          <label htmlFor="TextR" className="col-form-label">Nickname:</label>
+          <input 
+          type="text" 
+          className="form-control" 
+          id="TextR"        
+          value={name} 
+          onChange = {(e) => setName(e.target.value)} />
+          </div>
       <div className="mb-3">
           <label htmlFor="EmailR" className="col-form-label">Email:</label>
           <input 

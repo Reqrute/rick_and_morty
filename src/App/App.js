@@ -23,6 +23,7 @@ function App() {
     email : sessionStorage.getItem("Email"),
     token : sessionStorage.getItem("Token"),
     userId : sessionStorage.getItem("id"),
+    name : sessionStorage.getItem("Name"),
     password : sessionStorage.getItem("Password"),
     favorite : JSON.parse(sessionStorage.getItem("Favorite")),
   }))
