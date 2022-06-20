@@ -16,12 +16,21 @@
   right: 20px;
   top: 10px;
   font-size: 17px;
+  height: 30px;
+}
+
+.badgex {
+  right: 20px;
+  top: 3px;
+  font-size: 17px;
+  height: 30px;
 }
 
 .badgef {
-  right: 50px;
+  right: 55px;
   top: 10px;
   font-size: 17px;
+  height: 30px;
 }
 
 .imga {

@@ -34,7 +34,7 @@ const Characters = () => {
             <Filter />
             <div className="col-lg-8 col-12">
             <div className="row pt-3 mb-3 cardss" >
-                <Card result={result}/>
+                <Card page ={"Characters"} result={result}/>
               </div>
             </div>
           </div>

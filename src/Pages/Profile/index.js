@@ -95,7 +95,7 @@ export default function Profile() {
     <div className="col-lg-8 col-12">
     <div className="row py-3 mb-5 cardss" >
               <div className="row">
-                <Card result={result}/>
+                <Card page ={"Profile"} result={result}/>
               </div>
             </div>
             </div>

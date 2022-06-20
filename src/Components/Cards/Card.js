@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addFavoriteCard, removeFavoriteCard } from "../../store/slices/userSlice";
 import './Cards.css'
 
-const Card = ({result}) => {
+const Card = ({result , page}) => {
   let display;
   const dispatch = useDispatch();
   const {isAuth, favorite} = useAuth();
@@ -41,7 +41,7 @@ const Card = ({result}) => {
           )) 
             } 
 
-          {isAuth && ( mySet.has(id) ? (
+          { isAuth && page !== "Profile" &&  ( mySet.has(id) ? (
             <button 
             style= {{width: "300px"}} 
             className=" btn badge btn-warning fs-5 m-2" 
@@ -55,6 +55,19 @@ const Card = ({result}) => {
            }))}}
             >Add to favorite</button>
           ))}
+
+          { isAuth && page === "Profile" &&  ( mySet.has(id)) && (
+            <button 
+            style= {{width: "300px"}} 
+            data-bs-dismiss="modal" 
+            aria-label="Close"
+            className=" btn badge btn-danger fs-5 m-2" 
+            onClick={() => {dispatch(removeFavoriteCard({
+            id: id,
+           }))}}
+            >Delete favorite </button>
+          )}
+
             <div className="fs-6 fw-normal">
               <span className="fw-bold">Gender : </span>
               {gender}
@@ -96,7 +109,7 @@ const Card = ({result}) => {
             </div>
           </div>
 
-           {isAuth && ( mySet.has(id) ? (
+           {page !== "Profile" && isAuth && ( mySet.has(id) ? (
             <button className={`position-absolute badgec badge btn btn-warning`}
             onClick={() => {dispatch(removeFavoriteCard({
             id: id,
@@ -112,6 +125,12 @@ const Card = ({result}) => {
             >
               <img className="image imga img-fluid " src="https://www.flaticon.com/svg/vstatic/svg/3916/3916582.svg?token=exp=1655471894~hmac=5fd529581f3f4ac1fc29d5ba4599099a" alt = ""/>
             </button>))}
+
+            {page === "Profile" && isAuth && ( mySet.has(id) ) && (
+              <button  type="button" className="position-absolute badgex btn-close" aria-label="Close"
+              onClick={() => {dispatch(removeFavoriteCard({
+            id: id,
+           }))}}></button>)}
 
           {(() => {
             if (status === "Dead" && isAuth) {
