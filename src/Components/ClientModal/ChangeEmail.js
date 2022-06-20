@@ -53,14 +53,14 @@ import React from 'react';
           id="PasswordCE"        
           value={pass} 
           onChange = {(e) => setPass(e.target.value)}/>
-         {password !== pass ?  ( <p 
-          className='text-primary text-center mt-3' 
+         {pass !== '' ? (password !== pass ?  ( <p 
+          className='text-danger text-center mt-3' 
           > Uncorrect password !!!</p>
           ): (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-success text-center mt-3' 
           > Correct password !!!</p>
-          )
+          )) : null
           }
           </div>
         </div>

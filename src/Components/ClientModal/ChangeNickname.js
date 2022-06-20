@@ -1,22 +1,25 @@
 import { useDispatch } from 'react-redux'
 import { useState } from "react"; 
 import { setUser } from '../../store/slices/userSlice';
+import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { useAuth } from '../../Constants/use-auth';
 import React from 'react';
 
  const ChangeNickname = () => {
   const dispatch = useDispatch();
 
-  const {password} = useAuth(); 
+  const {password , email} = useAuth(); 
   const [name, setName] = useState('');
   const [pass, setPass] = useState(''); 
   
-    const handleChangeNickname = async () => {
-        dispatch(setUser({
+    const handleChangeNickname =  () => {
+      const auth = getAuth();
+      dispatch(setUser({
             name: name,
-        }))
-
+        }));
         sessionStorage.setItem( 'Name' , name);
+        signInWithEmailAndPassword(auth , email, password);
+        window.location.reload();
 }
 
   return (  
@@ -38,21 +41,21 @@ import React from 'react';
           onChange = {(e) => setName(e.target.value)} />
           </div>
           <div className="mb-3">
-          <label htmlFor="PasswordL" className="col-form-label">Password:</label>
+          <label htmlFor="PasswordNC" className="col-form-label">Password:</label>
           <input 
           type = "password" 
           className="form-control" 
-          id="PasswordCE"        
+          id="PasswordNE"        
           value={pass} 
           onChange = {(e) => setPass(e.target.value)}/>
-         {password !== pass ?  ( <p 
-          className='text-primary text-center mt-3' 
+         { pass !== '' ? (password !== pass ?  ( <p 
+          className='text-danger text-center mt-3' 
           > Uncorrect password !!!</p>
           ): (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-success text-center mt-3' 
           > Correct password !!!</p>
-          )
+          )) : null
           }
           </div>
         </div>

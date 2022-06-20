@@ -43,13 +43,13 @@ import React from 'react';
           id="PasswordCP1"        
           value={pass1} 
           onChange = {(e) => setPass1(e.target.value)}/>
-        { password !== pass1 ? (
+        { pass1 !== '' ? (password !== pass1 ? (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-danger text-center mt-3' 
           > Password Uncorrect !!!</p>
-          ) : <p 
-          className='text-primary text-center mt-3' 
-          > Password Correct !!!</p>}
+          ) : (<p 
+          className='text-success text-center mt-3' 
+          > Password Correct !!!</p>)) : null}
           </div>
           <div className="mb-3">
         <label htmlFor="PasswordCP2" className="col-form-label">Password:</label>
@@ -59,9 +59,9 @@ import React from 'react';
           id="PasswordCP2"        
           value={pass2} 
           onChange = {(e) => setPass2(e.target.value)}/>
-           {pass2.length < 6 ? (
+           {pass2.length < 6 && pass2 !== "" ? (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-danger text-center mt-3' 
           > password less that 6</p>
           ) : null}
           </div>
@@ -74,18 +74,19 @@ import React from 'react';
           id="PasswordCP3"        
           value={pass3} 
           onChange = {(e) => setPass3(e.target.value)}/>
-            {pass2 !== pass3 ?  ( <p 
-          className='text-primary text-center mt-3' 
-          >  passwords not equal </p>
-          ): pass3.length < 6 ? (
+            { pass3 !== "" ? ( pass3.length < 6 ? (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-danger text-center mt-3' 
           > password less that 6</p>
-          ) : (
-            <p 
-          className='text-primary text-center mt-3' 
+          ) : pass2 !== pass3 ?  
+          ( <p 
+          className='text-danger text-center mt-3' 
+          >  passwords not equal </p>
+          ) :  
+          ( <p 
+          className='text-success text-center mt-3' 
           > Passwords Correct !!!</p>
-          )
+          )) : null
           }
           </div>
         </div>

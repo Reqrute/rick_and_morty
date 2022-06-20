@@ -69,9 +69,9 @@ import { setUser } from '../../store/slices/userSlice';
           id="PasswordR"        
           value={pass} 
           onChange = {(e) => setPass(e.target.value)}/>
-          {pass.length < 6 ? (
+          {pass.length < 6 && pass !== '' ? (
             <p 
-          className='text-primary text-center mt-3' 
+          className='text-danger text-center mt-3' 
           > password less that 6</p>
           ) : null}
           <p 
